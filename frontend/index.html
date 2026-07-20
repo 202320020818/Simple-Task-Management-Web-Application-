@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Daily Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <div><p class="eyebrow">PERSONAL PRODUCTIVITY</p><h1>Make today count.</h1><p class="subtitle">Plan your work, keep momentum, and finish with confidence.</p></div>
+        <div class="summary"><span id="completedCount">0</span><small>tasks completed</small></div>
+      </header>
+      <section class="workspace">
+        <aside class="form-panel">
+          <div class="panel-heading"><h2 id="formHeading">Add a task</h2><button id="cancelEdit" class="text-button hidden" type="button">Cancel edit</button></div>
+          <form id="taskForm" novalidate>
+            <input id="taskId" type="hidden" />
+            <label>Task title <input id="title" maxlength="100" placeholder="e.g. Finish project report" required /></label>
+            <label>Description <textarea id="description" maxlength="1000" rows="4" placeholder="Add a few helpful details..." required></textarea></label>
+            <div class="field-row"><label>Priority <select id="priority" required><option value="">Select</option><option>High</option><option>Medium</option><option>Low</option></select></label><label>Due date <input id="dueDate" type="date" required /></label></div>
+            <label>Status <select id="status" required><option>Pending</option><option>In Progress</option><option>Completed</option></select></label>
+            <p id="formError" class="form-error" role="alert"></p>
+            <button class="primary-button" id="submitButton" type="submit">Add task <span>→</span></button>
+          </form>
+        </aside>
+        <section class="tasks-panel">
+          <div class="tasks-header"><div><h2>Your tasks</h2><p id="taskCount">Loading tasks...</p></div><div class="filters"><select id="priorityFilter" aria-label="Filter by priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Completed</option></select></div></div>
+          <div id="taskList" class="task-list"></div>
+        </section>
+      </section>
+    </main>
+    <template id="taskTemplate"><article class="task-card"><div class="task-main"><div class="task-title-row"><h3></h3><span class="priority-badge"></span></div><p class="task-description"></p><div class="task-meta"><span class="due-date"></span><span class="created-date"></span></div></div><div class="task-actions"><select class="status-select" aria-label="Task status"><option>Pending</option><option>In Progress</option><option>Completed</option></select><div><button class="icon-button edit-button" title="Edit task" aria-label="Edit task">✎</button><button class="icon-button delete-button" title="Delete task" aria-label="Delete task">×</button></div></div></article></template>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
